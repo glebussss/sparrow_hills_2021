@@ -9,9 +9,13 @@ public:
     }
 
     Complex(const double real, const double imaginary) {
+        _real = real;
+        _imaginary = imaginary;
     }
 
     Complex(const Complex& copied) {
+        _real = copied._real;
+        _imaginary = copied._imaginary;
     }
 
     Complex& operator=(const Complex& copied) {
@@ -21,9 +25,13 @@ public:
     }
 
     bool operator!=(const Complex& other) const {
+        if((_real != other._real) or (_imaginary != other._imaginary)) return true;
+        else return false;
     }
 
     bool operator==(const Complex& other) const {
+        if((_real == other._real) and (_imaginary == other._imaginary)) return true;
+        else return false;
     }
 
     Complex operator-() const {
@@ -42,6 +50,7 @@ public:
     }
 
     double module() const {
+        return sqrt(_real*_real + _imaginary*_imaginary);
     }
 
     double argument() const {
@@ -57,7 +66,6 @@ private:
 int main() {
     int errors = 0, tests = 0;
     Complex a;
-
     Complex b(1, 2);
     Complex c(b);
     ++tests;
